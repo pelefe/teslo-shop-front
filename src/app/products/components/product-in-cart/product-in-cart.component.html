@@ -1,0 +1,18 @@
+<div class="card bg-base-100 shadow-sm">
+  <figure>
+    <img [src]="product().images | productImage" [alt]="product().title" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title text-primary text-lg hover:underline cursor-pointer"
+      [routerLink]="['/product', product().slug]">
+      {{product().title}}
+    </h2>
+    <p>{{product().description | slice: 0:70 }}...</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-error"
+      (click)="this.productService.deleteFromCart(product())"
+      >Eliminar del carrito</button>
+      <a [routerLink]="['/product', product().slug]" class="btn btn-primary">Más información</a>
+    </div>
+  </div>
+</div>

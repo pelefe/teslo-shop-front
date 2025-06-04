@@ -1,0 +1,62 @@
+<div class="navbar bg-base-100 shadow-sm font-montserrat">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li>
+          <a routerLink="/gender/men" class="btn btn-ghost" routerLinkActive="text-primary">Hombres</a>
+        </li>
+
+        <li>
+          <a routerLink="/gender/women" class="btn btn-ghost" routerLinkActive="text-primary">Mujeres</a>
+        </li>
+
+        <li>
+          <a routerLink="/gender/kid" class="btn btn-ghost" routerLinkActive="text-primary">Kids</a>
+        </li>
+
+      </ul>
+    </div>
+    <a routerLink="/" class="btn btn-ghost text-xl">Teslo <span class="text-primary">| Shop</span></a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+     <li>
+          <a routerLink="/gender/men" class="btn btn-ghost" routerLinkActive="text-primary">Hombres</a>
+        </li>
+
+        <li>
+          <a routerLink="/gender/women" class="btn btn-ghost" routerLinkActive="text-primary">Mujeres</a>
+        </li>
+
+        <li>
+          <a routerLink="/gender/kid" class="btn btn-ghost" routerLinkActive="text-primary">Kids</a>
+        </li>
+    </ul>
+  </div>
+  <div class="navbar-end gap-4">
+    <button class="btn btn-warning" routerLink="/cart">
+    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
+</svg>
+
+    Ver Carrito</button>
+    @if (authService.authStatus() === 'authenticated') {
+      @if (authService.isAdmin()) {
+        <button class="btn btn-accent" routerLink="/admin">Administrar Contenidos</button>
+      }
+
+      <button class="btn btn-ghost">{{authService.user()?.fullName}}</button>
+      <button class="btn btn-sm btn-primary" (click)="authService.logout()">Salir</button>
+    }
+
+    @else if (authService.authStatus() === 'not-authenticated') {
+      <a routerLink="/auth/login" class="btn btn-primary">Login</a>
+    }
+
+  </div>
+</div>
